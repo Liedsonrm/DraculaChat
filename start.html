@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="start.css">
+    <title>Login</title>
+</head>
+<body>
+    <div id="all">
+    <img id="img" src="/dracula.png" alt="">
+    <form id="form">
+        <input type="text" name="name" id="name" placeholder="Digite seu nome de usuario" autocomplete="off">
+        <button id="submit" type="submit" red>Entrar</button>
+    </form>
+</div>
+</body>
+<script>
+    function redirect(){
+        
+        name = document.getElementById("name").value
+        var link = window.location.href.split('?')
+        window.location.href = `${link[0]}chat?name=${name}`
+
+
+    }
+    document.getElementById("form").addEventListener("submit", (e) => {
+        e.preventDefault()
+        redirect()
+    })
+</script>
+</html>

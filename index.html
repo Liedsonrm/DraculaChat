@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <title>CommunistChat</title>
+</head>
+<body>
+    <img id="img" src="/dracula.png" alt="">
+    <div id="conversation">
+        <div id="chat"></div>
+        <div id="send">
+            <input id="sendMsg" type="text" placeholder="Digite sua mesagem">
+            <a onclick="msg()">Enviar</a>
+        </div>
+        
+    </div>
+</body>
+
+    <script>
+        var socket = io()
+        var mensagens = []
+        var name = window.location.href.split('?')[1].split("=")[1]
+        console.log(name)
+
+        function msg(){
+            var msg = getMsg()
+            msg = `<p class="name">${name}:</p> <p class="msg_in">${msg}</p>`
+            socket.emit("chat_message", msg)
+        }
+
+        function getMsg(){
+            var msg = document.getElementById("sendMsg").value
+            document.getElementById("sendMsg").value = "" 
+            return msg
+        }
+        function addMsg(){
+            21
+            document.getElementById("chat").innerHTML = ""
+            for(let i = 0; i < mensagens.length; i++){
+                chat = document.getElementById("chat").innerHTML
+                console.log(document.getElementById("chat"))
+                document.getElementById('chat').innerHTML = chat+`<p class="msg">${mensagens[i]}</p>`
+            }
+        }
+        socket.on("chat_message", (msg) => {
+            if(mensagens.length === 23){
+                mensagens.shift()
+            }
+            mensagens.push(msg)
+            console.log(mensagens)
+            addMsg()
+        })
+
+
+    </script>
+</html>
