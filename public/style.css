@@ -28,7 +28,7 @@ body{
 
 
 #chat{
-    width: 500px;
+    width: 98vw;
     height: 400px;
     display: flex;
     flex-direction: column;
